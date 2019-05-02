@@ -194,7 +194,7 @@ public class ERC20Contract extends AbstractContract {
      * @param amount amount
      * @return
      */
-    public static ToClause buildTranferToClause(ERC20Token token, Address toAddress, Amount amount){
+    public static ToClause buildTranferToClause(ERC20Token token, Address toAddress, Amount amount ){
         if(token == null){
             throw  new IllegalArgumentException( "token is null" );
         }
@@ -204,16 +204,44 @@ public class ERC20Contract extends AbstractContract {
         if(amount == null){
             throw new IllegalArgumentException( "amount is null" );
         }
-
+        
         AbiDefinition abiDefinition = defaultERC20Contract.findAbiDefinition( "transfer" );
         if(abiDefinition == null){
             throw new RuntimeException( "can not find transfer abi method" );
         }
 		String data = buildData( abiDefinition, toAddress.toHexString( null ), amount.toBigInteger() );
-
         ToData toData = new ToData();
         toData.setData( data );
         return new ToClause(token.contractAddress, Amount.ZERO, toData);
+    }
+
+    /**
+     * Build transfer to clause.
+     * @param token required token to transfer.
+     * @param toAddress transfer to address.
+     * @param amount amount
+     * @param contractDest
+     * @return
+     */
+    public static ToClause buildTranferToSimpleClause(ERC20Token token, Address toAddress, Amount amount, Address contractDest ){
+        if(token == null){
+            throw  new IllegalArgumentException( "token is null" );
+        }
+        if(toAddress == null){
+            throw new IllegalArgumentException( "toAddress is null" );
+        }
+        if(amount == null){
+            throw new IllegalArgumentException( "amount is null" );
+        }
+        
+        AbiDefinition abiDefinition = defaultERC20Contract.findAbiDefinition( "transfer" );
+        if(abiDefinition == null){
+            throw new RuntimeException( "can not find transfer abi method" );
+        }
+		String data = buildData( abiDefinition, toAddress.toHexString( null ), amount.toBigInteger() );
+        ToData toData = new ToData();
+        toData.setData( data );
+        return new ToClause(contractDest, Amount.ZERO, toData);
     }
 
 

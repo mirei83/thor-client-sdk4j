@@ -29,6 +29,8 @@ public class Main {
 
 	private static final String SIGN_VTHO = "signVTHO";
 
+	private static final String SIGN_SIMPLE = "signSIMPLE";
+
 	private static final String PARSE = "parse";
 
 	private static final String BALANCE = "balance";
@@ -52,6 +54,8 @@ public class Main {
 				TransactionConsole.signVETTxn(args);
 			} else if (args[0].equals(SIGN_VTHO)) {
 				TransactionConsole.signVTHOTxn(args);
+			} else if (args[0].equals(SIGN_SIMPLE)) {
+				TransactionConsole.signSIMPLE(args);
 			} else if (args[0].equals(TRANSFER_VET)) {
 				TransactionConsole.transferVet(args);
 			} else if (args[0].equals(TRANSFER_VTHO)) {

@@ -122,6 +122,27 @@ public class TransactionConsole {
 		}
 	}
 
+	public static void signSIMPLE(String[] args) throws Exception {
+		String privateKey;// args=sign filePath privateKey
+		String contractDest;// Destination contract
+		if (args.length < 4 || StringUtils.isBlank(args[2])) {
+			System.out.println("SIMPLE: You have input invalid parameters.");
+			System.exit(0);
+		}
+		privateKey = args[2];
+		contractDest = args[3];
+
+		File file = new File(args[1]);
+		if (file.isFile()) {
+			List<String[]> transactionList = ConsoleUtils.readExcelFile(args[1]);
+			String rawTransaction = ConsoleUtils.doSignSimple(transactionList, privateKey, false, contractDest);
+			System.out.println("Raw Transaction:");
+			System.out.println(rawTransaction);
+		} else {
+			System.out.println("You have input invalid parameters.");
+		}
+	}
+
 	/**
 	 * transferVet
 	 * 

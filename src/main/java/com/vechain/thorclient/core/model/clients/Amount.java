@@ -53,6 +53,15 @@ public class Amount {
 		return Amount.createFromToken(ERC20Token.VTHO);
 	}
 
+	/**
+	 * Create a SIMPLE amount
+	 * 
+	 * @return {@link Amount}
+	 */
+	public static Amount SIMPLE() {
+		return Amount.createFromToken(ERC20Token.SIMPLE);
+	}
+
 	private Amount() {
 	}
 

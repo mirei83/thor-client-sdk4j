@@ -10,6 +10,7 @@ import com.vechain.thorclient.utils.StringUtils;
 public final class ERC20Token extends AbstractToken {
 
 	public static final ERC20Token VTHO = new ERC20Token("VTHO", Address.VTHO_Address, 18);
+	public static final ERC20Token SIMPLE = new ERC20Token("SIMPLE", Address.SIMPLE_Address, 18);
 	protected Address contractAddress;
 
 	/**
